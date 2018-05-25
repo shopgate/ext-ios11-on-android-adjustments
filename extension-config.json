@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "id": "@shopgate/ios11-on-android-adjustments",
+  "components": [
+    {
+      "id": "hideTabBarOnInputFocus",
+      "type": "portals",
+      "path": "frontend/components/hideTabBarOnInputFocus",
+      "target": "app.globals"
+    }
+  ],
+  "configuration": {
+  }
+}
