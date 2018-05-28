@@ -50,10 +50,17 @@ describe('focusListener', () => {
     expect(document.addEventListener.mock.calls[0][0]).toBe('focusin');
     expect(document.addEventListener.mock.calls[1][0]).toBe('focusout');
     testModes();
-    document.addEventListener.mock.calls[0][1]();
+    document.addEventListener.mock.calls[0][1]({ target: { tagName: 'INPUT' } });
     testModes('hide');
-    document.addEventListener.mock.calls[1][1]();
+    document.addEventListener.mock.calls[1][1]({ target: { tagName: 'INPUT' } });
     testModes('show');
+  });
+  it('should do nothing when focus element is not an input', () => {
+    focusListener(document, params);
+    document.addEventListener.mock.calls[0][1]({ target: { tagName: 'BUTTON' } });
+    testModes();
+    document.addEventListener.mock.calls[1][1]({ target: { tagName: 'BUTTON' } });
+    testModes();
   });
   it('should do nothing on ios theme', () => {
     mockedIsIOSPlatform = true;
