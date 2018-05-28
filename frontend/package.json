@@ -1,7 +1,7 @@
 {
   "name": "@shopgate/ios11-on-android-adjustments",
   "version": "0.0.1",
-  "description": "Adjustments for ios11 theme which runs on Android platform.",
+  "description": "Adjustments for ios11 theme when running on Android platform.",
   "license": "Apache-2.0",
   "scripts": {
     "test": "jest",
