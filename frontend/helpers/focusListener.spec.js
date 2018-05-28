@@ -1,5 +1,8 @@
-import focusListener from './index';
+import focusListener from './focusListener';
 
+let mockedIsIOSTheme = false;
+jest.useFakeTimers();
+jest.mock('./isiOSTheme', () => () => mockedIsIOSTheme);
 const document = {
   addEventListener: jest.fn(),
 };
@@ -12,7 +15,12 @@ const params = {
 };
 
 describe('focusListener', () => {
+  beforeEach(() => {
+    document.addEventListener.mockClear();
+  });
+  // eslint-disable-next-line require-jsdoc
   const testModes = (mode = 'all') => {
+    jest.runAllTimers();
     switch (mode) {
       case 'hide':
         expect(params.hideTabBar).toBeCalled();
@@ -46,5 +54,10 @@ describe('focusListener', () => {
     testModes('hide');
     document.addEventListener.mock.calls[1][1]();
     testModes('show');
+  });
+  it('should do nothing on ios theme', () => {
+    mockedIsIOSTheme = true;
+    focusListener(document, params);
+    expect(document.addEventListener).not.toHaveBeenCalled();
   });
 });

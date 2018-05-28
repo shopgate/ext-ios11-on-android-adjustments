@@ -1,3 +1,6 @@
+import isIOSTheme from './isiOSTheme';
+
+let timeout;
 /**
  * Listener for `focusin` and `focusout` events which is showing/hiding all components
  * which could be visible in wrong places when keyboard is open.
@@ -15,13 +18,19 @@ function focusListener(document, {
   showTabBar,
   showAddToCartBar,
 }) {
+  if (isIOSTheme()) {
+    return;
+  }
   document.addEventListener('focusin', () => {
+    clearTimeout(timeout);
     dispatch(hideTabBar());
     dispatch(hideAddToCartBar());
   });
   document.addEventListener('focusout', () => {
-    dispatch(showTabBar());
-    dispatch(showAddToCartBar());
+    timeout = setTimeout(() => {
+      dispatch(showTabBar());
+      dispatch(showAddToCartBar());
+    }, 600);
   });
 }
 
