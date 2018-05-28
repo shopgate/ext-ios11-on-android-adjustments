@@ -1,8 +1,8 @@
 import focusListener from './focusListener';
 
-let mockedIsIOSTheme = false;
+let mockedIsIOSPlatform = false;
 jest.useFakeTimers();
-jest.mock('./isiOSTheme', () => () => mockedIsIOSTheme);
+jest.mock('./isiOSPlatform', () => () => mockedIsIOSPlatform);
 const document = {
   addEventListener: jest.fn(),
 };
@@ -56,7 +56,7 @@ describe('focusListener', () => {
     testModes('show');
   });
   it('should do nothing on ios theme', () => {
-    mockedIsIOSTheme = true;
+    mockedIsIOSPlatform = true;
     focusListener(document, params);
     expect(document.addEventListener).not.toHaveBeenCalled();
   });

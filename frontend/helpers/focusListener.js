@@ -1,4 +1,4 @@
-import isIOSTheme from './isiOSTheme';
+import isIOSPlatform from './isiOSPlatform';
 
 let timeout;
 /**
@@ -18,7 +18,7 @@ function focusListener(document, {
   showTabBar,
   showAddToCartBar,
 }) {
-  if (isIOSTheme()) {
+  if (isIOSPlatform()) {
     return;
   }
   document.addEventListener('focusin', () => {
