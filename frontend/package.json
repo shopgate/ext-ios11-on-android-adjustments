@@ -10,12 +10,12 @@
     "coverage:watch": "npm run coverage -- --watch"
   },
   "devDependencies": {
-    "@shopgate/eslint-config": "^5.2.0",
-    "@shopgate/pwa-common": "^5.2.0",
-    "@shopgate/pwa-common-commerce": "^5.2.0",
-    "@shopgate/pwa-core": "^5.2.0",
-    "@shopgate/pwa-unit-test": "^5.2.0",
-    "@shopgate/react-hammerjs": "^0.5.8",
+    "@shopgate/eslint-config": "*",
+    "@shopgate/pwa-common": "*",
+    "@shopgate/pwa-common-commerce": "^*",
+    "@shopgate/pwa-core": "*",
+    "@shopgate/pwa-unit-test": "*",
+    "@shopgate/react-hammerjs": "*",
     "babel-core": "^6.26.0",
     "babel-plugin-react-transform": "^3.0.0",
     "babel-plugin-transform-class-properties": "^6.24.1",

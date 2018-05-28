@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Theme } from '@shopgate/pwa-common/context';
 import connect from './connect';
+import focusListener from '../../helpers/focusListener';
 
 /**
  * Hack for ios11 tabBar which is fixed to the bottom.
@@ -16,13 +17,9 @@ const HideTabBarOnInputFocus = ({ dispatch }) => (
   <Theme>
     {
       (theme) => {
-        document.addEventListener('focusin', () => {
-          dispatch(theme.actions.hideTabBar());
-          dispatch(theme.actions.hideAddToCartBar());
-        });
-        document.addEventListener('focusout', () => {
-          dispatch(theme.actions.showTabBar());
-          dispatch(theme.actions.showAddToCartBar());
+        focusListener(document, {
+          dispatch,
+          ...theme.actions,
         });
         return null;
       }

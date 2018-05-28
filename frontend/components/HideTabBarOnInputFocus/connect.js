@@ -1,6 +1,11 @@
 import { connect } from 'react-redux';
 
-const mapDispatchToProps = (dispatch) => ({
+/**
+ * Maps dispatch to props.
+ * @param {function} dispatch Dispatch.
+ * @return {Object}
+ */
+const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
