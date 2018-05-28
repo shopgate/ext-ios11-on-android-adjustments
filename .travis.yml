@@ -5,9 +5,7 @@ cache:
 language: node_js
 node_js:
 - 9.4.0
-install:
-  - yarn install
-script: cd frontend && yarn run coverage --maxWorkers=4 --ci
+script: cd frontend && npm run coverage --maxWorkers=4 --ci
 after_script: cat ./frontend/coverage/lcov.info | ./frontend/node_modules/coveralls/bin/coveralls.js
 branches:
   only:
