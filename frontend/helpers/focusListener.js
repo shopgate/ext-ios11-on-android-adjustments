@@ -1,4 +1,10 @@
 import isIOSPlatform from './isiOSPlatform';
+import {
+  showTabBar,
+  hideTabBar,
+  showAddToCartBar,
+  hideAddToCartBar,
+} from '../actions';
 
 let timeout;
 
@@ -15,33 +21,29 @@ function eventRelatesToAKeyboard(e) {
  * which could be visible in wrong places when keyboard is open.
  * @param {HtmlElement} document Html document
  * @param {function} dispatch Dispatch function.
- * @param {function} hideTabBar HideTabBar function.
- * @param {function} hideAddToCartBar HideAddToCartBar function.
- * @param {function} showTabBar ShowTabBar function.
- * @param {function} showAddToCartBar ShowAddToCartBar function.
  */
 function focusListener(document, {
   dispatch,
-  hideTabBar,
-  hideAddToCartBar,
-  showTabBar,
-  showAddToCartBar,
 }) {
   if (isIOSPlatform()) {
     return;
   }
+
   document.addEventListener('focusin', (e) => {
     if (!eventRelatesToAKeyboard(e)) {
       return;
     }
+
     clearTimeout(timeout);
     dispatch(hideTabBar());
     dispatch(hideAddToCartBar());
   });
+
   document.addEventListener('focusout', (e) => {
     if (!eventRelatesToAKeyboard(e)) {
       return;
     }
+    clearTimeout(timeout);
     timeout = setTimeout(() => {
       dispatch(showTabBar());
       dispatch(showAddToCartBar());

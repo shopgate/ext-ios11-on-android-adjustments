@@ -3,6 +3,7 @@ import isiOSPlatform from './isiOSPlatform';
 let mockedNavigator = {
   vendor: 'Something else',
 };
+
 jest.mock('./getNavigator', () => () => mockedNavigator);
 
 describe('isiOSPlatform', () => {
@@ -12,6 +13,7 @@ describe('isiOSPlatform', () => {
     };
     expect(isiOSPlatform()).toBe(false);
   });
+
   it('should return true for ios', () => {
     mockedNavigator = {
       vendor: 'Apple Computer, Inc.',
