@@ -25,18 +25,30 @@ function eventRelatesToAKeyboard(e) {
 function focusListener(document, {
   dispatch,
 }) {
+  window.foo = {
+    hideTabBar,
+    hideAddToCartBar,
+    dispatch,
+    isIOSPlatform,
+  };
   if (isIOSPlatform()) {
+    console.warn('isIOSPlatform', true);
     return;
   }
 
   document.addEventListener('focusin', (e) => {
+    console.warn('FOCUSIN');
     if (!eventRelatesToAKeyboard(e)) {
+      console.warn('NOT KEYBOARD');
       return;
     }
 
+    console.warn('CLEAR TIMEOUT');
     clearTimeout(timeout);
     dispatch(hideTabBar());
+    console.warn('DID HIDE TABBAR');
     dispatch(hideAddToCartBar());
+    console.warn('DID HIDE ADD TO CART');
   });
 
   document.addEventListener('focusout', (e) => {
